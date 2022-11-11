@@ -3,7 +3,7 @@ from game.die import Die
 
 class Director:
     """A person who directs the game. 
-    
+
     The responsibility of a Director is to control the sequence of play.
 
     Attributes:
@@ -15,7 +15,7 @@ class Director:
 
     def __init__(self):
         """Constructs a new Director.
-        
+
         Args:
             self (Director): an instance of Director.
         """
@@ -30,7 +30,7 @@ class Director:
 
     def start_game(self):
         """Starts the game by running the main game loop.
-        
+
         Args:
             self (Director): an instance of Director.
         """
@@ -47,7 +47,7 @@ class Director:
         """
         roll_dice = input("Roll dice? [y/n] ")
         self.is_playing = (roll_dice == "y")
-       
+
     def do_updates(self):
         """Updates the player's score.
 
@@ -55,12 +55,12 @@ class Director:
             self (Director): An instance of Director.
         """
         if not self.is_playing:
-            return 
+            return
 
         for i in range(len(self.dice)):
             die = self.dice[i]
             die.roll()
-            self.score += die.points 
+            self.score += die.points
         self.total_score += self.score
 
     def do_outputs(self):
@@ -71,7 +71,7 @@ class Director:
         """
         if not self.is_playing:
             return
-        
+
         values = ""
         for i in range(len(self.dice)):
             die = self.dice[i]
@@ -79,4 +79,6 @@ class Director:
 
         print(f"You rolled: {values}")
         print(f"Your score is: {self.total_score}\n")
-        self.is_playing == (self.score > 0)
+        # the line below was incorrect in the original code and has been modified
+        self.is_playing = (self.score > 0)
+        self.score = 0  # this line didn't exist in the original code and has been added
